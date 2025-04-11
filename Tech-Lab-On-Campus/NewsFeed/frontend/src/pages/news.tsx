@@ -64,9 +64,22 @@ export default function News() {
             // Once completing you should be able to see news articles different from the dummy data originally provided.
 
             // Hint: this may be useful to figure how to fetch data: https://medium.com/@bhanu.mt.1501/api-calls-in-react-js-342a09d5315f
+            const articlesResponse = await fetch(
+                '/api/news/get-newsfeed'
+            );
+            const data = await articlesResponse.json();
+            setArticles(data[0]);
+
+            const featured = await fetch(
+                '/api/news/get-featured-article'
+            );
+            const featured_data = await featured.json();
+            setFeaturedArticle(featured_data[0]);
         }
         fetchData();
     }, [])
+
+
 
     return (
         <div>
